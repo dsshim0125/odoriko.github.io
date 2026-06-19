@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Odoriko generates human motion that is consistent with subject bio-morphological information with multimodal inputs.">
+  <meta name="keywords" content="Odoriko, Human Motion Generation, Multimodal Inputs">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Odoriko</title>
+
+
+  </script>
+
+  <link rel="stylesheet" href="./static/fonts/local_fonts/fonts-local.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/dancer.svg">
+
+  <script src="./static/js/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">Odoriko: A Shape-Aware Multimodal Diffusion Framework for Human Motion</h1>
+
+          <div class="is-size-4 publication-authors">
+            ECCV 2026
+          </div>
+
+          <div class="is-size-5 publication-authors" style="max-width: 600px; margin: 0 auto;">
+            <span class="author-block">
+              <a href="https://dsshim0125.github.io/">Dongseok Shim</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=eVHCoTsAAAAJ">Julian Tanke</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=zAXF4EYAAAAJ">Kengo Uchida</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://chrysts.github.io/">Christian Simon</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ai.sony/people/Koichi-Saito/">Koichi Saito</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ai.sony/people/Takashi-Shibuya/">Takashi Shibuya</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=en&amp;user=_mhxayYAAAAJ">Shusuke Takahashi</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.yukimitsufuji.com/">Yuki Mitsufuji</a><sup>1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Sony Group Corporation,</span>
+            <span class="author-block"><sup>2</sup>Sony AI</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <!-- TODO: replace the "#" hrefs below with the real Paper / arXiv / Video / Code links. -->
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!--
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              -->
+              <!-- Code Link. -->
+              <!--
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body has-text-centered">
+      <div class="teaser-pdf-wrapper">
+        <img src="./static/images/teaser.png" alt="Teaser" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+            <p>
+                Human motion generation has been widely studied across diverse input modalities — text, music, and video — and recent efforts have unified these into single multimodal frameworks. However, while morphological factors such as gender and body shape are known to produce distinct kinematic signatures, no existing unified framework incorporates this into generation, treating all subjects as morphologically equivalent.
+              </p>
+              <p>
+                We present <b>Odoriko</b>, the first unified multimodal motion generation framework that reflects subject bio-morphological information directly in synthesized motion output. Rather than averaging over subject variation, Odoriko generates motion that is consistent with who is moving, not just what they are asked to do — across text, music, and video conditions within a single model. When explicit morphological information is unavailable, Odoriko additionally recovers subject morphology alongside motion, unifying estimation and generation in one framework.
+              </p>
+              <p>
+                Extensive experiments across text-to-motion, music-to-dance, and video-to-motion benchmarks demonstrate that Odoriko matches or exceeds prior specialized models on standard metrics, while enabling morphology-consistent generation that no existing unified framework supports.
+              </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div></div>
+</section>
+
+
+
+<section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Human Motion Synthesis</h2>
+        <div class="content has-text-justified">
+            Odoriko enables human motion generation and estimation from diverse input modalities—including text, music, and video—within a single unified framework.
+        </p>
+        </div>
+        <h3 class="title is-4">Text-to-Motion</h3>
+        <p>
+            We compare <b><span style="color: rgb(255, 185, 16);">Odoriko</span></b> with existing multimodal motion generation models, <b><span style="color: rgb(255, 180, 251);">MotionCraft</span></b> and <b><span style="color: rgb(99, 207, 27);">GENMO</span></b>.
+        </p>
+        <div id="t2m" class="carousel results-carousel">
+          <div class="column is-centered has-text-centered">
+            <p><b> "A person is doing a forward kick with each leg."</b></p><br>
+            <video poster="" id="kick" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/t2m1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column is-centered has-text-centered">
+            <p><b> "Someone is walking in a backward motion."</b></p><br>
+            <video poster="" id="backward" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/t2m2.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column is-centered has-text-centered">
+            <p><b> "A person picks up a heavy object from the ground, places it on a table, and walks away."</b></p><br>
+            <video poster="" id="table" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/t2m3.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column is-centered has-text-centered">
+            <p><b> "A person walks forward and does a cartwheel."</b></p><br>
+            <video poster="" id="cartwheel" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/t2m4.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <h3 class="title is-4" style="margin-top: 1rem;">Music-to-Dance</h3>
+        <div id="m2d" class="carousel results-carousel">
+          <div class="columns is-mobile is-centered has-text-centered">
+            <div class="column is-half">
+              <p><b>Mixed Genre Choreography</b></p><br>
+              <video poster="" id="m2d-video-1" controls playsinline height="100%">
+                <source src="./static/videos/m2d3.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-half">
+              <p><b>Classic ShenYun Dance</b></p><br>
+              <video poster="" id="m2d-video-2" controls playsinline height="100%">
+                <source src="./static/videos/m2d2.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="columns is-mobile is-centered has-text-centered">
+            <div class="column is-half">
+              <p><b>Street and Urban Dance</b></p><br>
+              <video poster="" id="m2d-video-3" controls playsinline height="100%">
+                <source src="./static/videos/m2d1.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="column is-half">
+              <p><b>Hip-hop Dance</b></p><br>
+              <video poster="" id="m2d-video-4" controls playsinline height="100%">
+                <source src="./static/videos/m2d4.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+        <h3 class="title is-4" style="margin-top: 2rem;">Video-to-Motion</h3>
+        <div class="content has-text-justified">
+        <p>
+            As our model focuses on local pose estimation, global motion is reconstructed using ground-truth translation.
+            The subjects' shape and gender are directly predicted by Odoriko.
+          </p>
+        </div>
+        <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <video id="lunge" controls muted playsinline height="100%">
+                  <source src="./static/videos/v2m1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="column">
+              <div class="columns is-centered">
+                <div class="column content">
+                  <video id="skate" controls muted playsinline height="100%">
+                    <source src="./static/videos/v2m2.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Shape-aware Motion Generation</h2>
+        <div class="content has-text-justified">
+        <p>
+          Odoriko generates motions that faithfully follow the input shape conditioning.
+          Even with identical text or music inputs, the resulting motions vary according to the subjects' shape, producing biomorphologically plausible and consistent movements.
+          During inference, we fix the random seed so that differences arise only from the shape conditioning.
+        </p>
+        </div>
+        <h3 class="title is-4">Text-to-Motion</h3>
+        <div id="t2m-shape" class="carousel results-carousel">
+          <div class="column is-centered has-text-centered">
+            <p><b> "A person stretches both arms overhead and reaches as high as possible."</b></p><br>
+            <video poster="" id="overhead" autoplay controls muted loop playsinline width="50%">
+              <source src="./static/videos/t2m_shape_overhead.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column is-centered has-text-centered">
+            <p><b> "A person repeatedly performs explosive vertical jumps, trying to reach maximum height."</b></p><br>
+            <video poster="" id="jump" autoplay controls muted loop playsinline width="50%">
+              <source src="./static/videos/t2m_shape_jump.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column is-centered has-text-centered">
+            <p><b> "A person carefully walks heel-to-toe across a very narrow beam while extending their arms for balance."</b></p><br>
+            <video poster="" id="heel" autoplay controls muted loop playsinline width="50%">
+              <source src="./static/videos/t2m_shape_heel.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+        <h3 class="title is-4" style="margin-top: 1rem;">Music-to-Dance</h3>
+        <div class="columns is-centered">
+            <div class="column">
+              <div class="content">
+                <video id="m2d1" controls playsinline height="100%">
+                  <source src="./static/videos/m2d_shape1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+            </div>
+            <div class="column">
+              <div class="columns is-centered">
+                <div class="column content">
+                  <video id="m2d2" controls playsinline height="100%">
+                    <source src="./static/videos/m2d_shape2.mp4"
+                            type="video/mp4">
+                  </video>
+                </div>
+
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{shim2026odoriko,
+  title     = {Odoriko: A Shape-Aware Multimodal Diffusion Framework for Human Motion},
+  author    = {Shim, Dongseok and Tanke, Julian and Uchida, Kengo and Simon, Christian
+               and Saito, Koichi and Shibuya, Takashi and Takahashi, Shusuke and Mitsufuji, Yuki},
+  booktitle = {European Conference on Computer Vision (ECCV)},
+  year      = {2026}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/dsshim0125" class="external-link">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            The website template is adapted from <a href="https://nerfies.github.io/">Nerfies</a>,
+            licensed under a <a rel="license"
+            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+            Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+</body>
+</html>
